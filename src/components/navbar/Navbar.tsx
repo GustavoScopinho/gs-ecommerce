@@ -14,9 +14,7 @@ export const Navbar = () => {
               <Font>MKS</Font>
               <FontSmall>Sistemas</FontSmall>
             </Toolbar>
-            {/* <NavButton> */}
             <Cart />
-            {/* </NavButton> */}
           </Container>
         </AppBar>
       </Box>

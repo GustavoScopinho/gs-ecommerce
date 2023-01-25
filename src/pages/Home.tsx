@@ -1,5 +1,6 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { Navbar } from '../components/navbar/Navbar'
+import { Section } from '../components/section/Section'
 
 const theme = createTheme({
   typography: {
@@ -12,7 +13,7 @@ export const Home = () => {
     <>
       <ThemeProvider theme={theme}>
         <Navbar />
-        <h1>Home</h1>
+        <Section />
       </ThemeProvider>
     </>
   )
