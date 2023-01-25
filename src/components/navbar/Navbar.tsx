@@ -1,10 +1,8 @@
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
 import { Container, Font, FontSmall, NavButton } from './Navbar.styled'
-// import NavButton from './Navbar.styled'
-import IconCart from '../../assets/icon-cart.png'
+import { Cart } from '../cart/Cart'
 
 export const Navbar = () => {
   return (
@@ -16,9 +14,9 @@ export const Navbar = () => {
               <Font>MKS</Font>
               <FontSmall>Sistemas</FontSmall>
             </Toolbar>
-            <NavButton>
-              <img src={IconCart} alt="" /> <strong>0</strong>
-            </NavButton>
+            {/* <NavButton> */}
+            <Cart />
+            {/* </NavButton> */}
           </Container>
         </AppBar>
       </Box>
