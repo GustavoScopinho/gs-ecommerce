@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Container = styled.button`
+export const Container = styled.div`
   height: 101px;
   background-color: #0f52ba;
   display: flex;
