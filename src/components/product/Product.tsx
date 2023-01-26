@@ -9,10 +9,24 @@ import {
 } from './Product.styled'
 import ImgHomepod from '../../assets/homepod.png'
 import IconBuy from '../../assets/shopping-bag.png'
+import { useGetAllProductsQuery } from '../../shared/features/api/product/productSlice'
+import { IPagination, IProduct } from '../../shared/interfaces/index'
+import { useEffect } from 'react'
 
 export const Product = () => {
+  const { data: products } = useGetAllProductsQuery({
+    page: 1,
+    rows: 5,
+    sortBy: 'id',
+    orderBy: 'DESC'
+  })
+
+  console.log(products)
   return (
     <>
+      {/* {products?.map((item) => {
+          item.
+      })} */}
       <ContainerProduct>
         <ContainerImagem>
           <img src={ImgHomepod} alt="" />

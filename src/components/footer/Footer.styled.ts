@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-
 export const ContainerFooter = styled.footer`
   background-color: #eeeeee;
   width: 100%;
