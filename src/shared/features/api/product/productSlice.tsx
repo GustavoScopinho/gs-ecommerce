@@ -3,9 +3,9 @@ import { apiSlice } from '../../api'
 
 export const productSlice = apiSlice.injectEndpoints({
   endpoints: build => ({
-    getAllProducts: build.query<IProduct, IPagination>({
+    getAllProducts: build.query<IProduct | undefined, IPagination>({
       query: data => ({
-        url: '/products?page=1&rows=5&sortBy=id&orderBy=DESC',
+        url: '/products?page=1&rows=8&sortBy=id&orderBy=DESC',
         method: 'GET'
         // params: {
         //   page:  ,

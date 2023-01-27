@@ -7,13 +7,6 @@ export const Section = () => {
       <ContainerSection>
         <Container>
           <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
         </Container>
       </ContainerSection>
     </>

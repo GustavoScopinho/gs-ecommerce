@@ -1,7 +1,7 @@
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
-import { Container, Font, FontSmall, NavButton } from './Navbar.styled'
+import { Container, Font, FontSmall } from './Navbar.styled'
 import { Cart } from '../cart/Cart'
 
 export const Navbar = () => {
