@@ -9,6 +9,11 @@ export interface IProduct {
   updatedAt: string
 }
 
+export interface IProducts {
+  count: number
+  products: IProduct[]
+}
+
 export interface IPagination {
   page: number
   rows: number

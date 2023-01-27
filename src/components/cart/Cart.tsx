@@ -4,7 +4,17 @@ import Box from '@mui/material/Box'
 import SwipeableDrawer from '@mui/material/SwipeableDrawer'
 import Button from '@mui/material/Button'
 import IconCart from '../../assets/icon-cart.png'
-import { NavButton } from './Cart.styled'
+import {
+  ButtonClose,
+  Checkout,
+  ContainerDrawer,
+  ContainerProducts,
+  ContainerText,
+  NavButton,
+  TallContainer,
+  Total
+} from './Cart.styled'
+import { ProductCart } from '../productCart/ProductCart'
 
 type Anchor = 'right'
 
@@ -30,12 +40,33 @@ export const Cart = () => {
 
   const list = (anchor: Anchor) => (
     <Box
-      sx={{ width: '486px' }}
+      sx={{ width: '486px', height: '100%', backgroundColor: '#0f52ba' }}
       role="presentation"
-      onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <Typography>Teste</Typography>
+      <ContainerDrawer>
+        <TallContainer>
+          <ContainerText>
+            <Typography sx={{ fontSize: '27px', fontWeight: '700' }}>
+              Carrinho de compras
+            </Typography>
+          </ContainerText>
+
+          <ButtonClose onClick={toggleDrawer(anchor, false)}>X</ButtonClose>
+        </TallContainer>
+        <ContainerProducts>
+          <Box>
+            <ProductCart />
+          </Box>
+          <Total>
+            <Typography>Total</Typography>
+            <Typography>R$798</Typography>
+          </Total>
+        </ContainerProducts>
+        <Checkout>
+          <Typography>Finalizar Compra</Typography>
+        </Checkout>
+      </ContainerDrawer>
     </Box>
   )
 

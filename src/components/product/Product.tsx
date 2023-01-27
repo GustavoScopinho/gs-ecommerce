@@ -1,5 +1,5 @@
 import {
-  Box,
+  BoxMiddle,
   Buy,
   ContainerImagem,
   ContainerProduct,
@@ -11,11 +11,11 @@ import {
 import ImgHomepod from '../../assets/homepod.png'
 import IconBuy from '../../assets/shopping-bag.png'
 import { useGetAllProductsQuery } from '../../shared/features/api/product/productSlice'
-import { IPagination, IProduct } from '../../shared/interfaces/index'
-import { useEffect } from 'react'
+
+import { SkeletonLoading } from '../skeletonLoading/SkeletonLoading'
 
 export const Product = () => {
-  const { data } = useGetAllProductsQuery({
+  const { data, isLoading } = useGetAllProductsQuery({
     page: 1,
     rows: 1,
     sortBy: 'id',
@@ -23,31 +23,36 @@ export const Product = () => {
   })
 
   let Products = data?.products
+  console.log(data)
 
   return (
     <>
-      {Products?.map((item: any) => {
-        return (
-          <ContainerProduct key={item.id}>
-            <ContainerImagem>
-              <img src={item.photo} alt="" />
-            </ContainerImagem>
-            <Box>
-              <ContainerTitle>
-                <p>{item.name}</p>
-              </ContainerTitle>
-              <Price>
-                <p>R${item.price}</p>
-              </Price>
-            </Box>
-            <Description>{item.description}</Description>
-            <Buy>
-              <img src={IconBuy} alt="" />
-              <p>COMPRAR</p>
-            </Buy>
-          </ContainerProduct>
-        )
-      })}
+      {isLoading ? (
+        <SkeletonLoading />
+      ) : (
+        Products?.map((item: any) => {
+          return (
+            <ContainerProduct key={item.id}>
+              <ContainerImagem>
+                <img src={item.photo} alt="" />
+              </ContainerImagem>
+              <BoxMiddle>
+                <ContainerTitle>
+                  <p>{item.name}</p>
+                </ContainerTitle>
+                <Price>
+                  <p>R${item.price}</p>
+                </Price>
+              </BoxMiddle>
+              <Description>{item.description}</Description>
+              <Buy>
+                <img src={IconBuy} alt="" />
+                <p>COMPRAR</p>
+              </Buy>
+            </ContainerProduct>
+          )
+        })
+      )}
     </>
   )
 }

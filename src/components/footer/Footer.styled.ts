@@ -9,7 +9,7 @@ export const ContainerFooter = styled.footer`
 
   position: fixed;
   bottom: 0px;
-  left: 0;
+  left: 0px;
 
   p {
     font-weight: 400;

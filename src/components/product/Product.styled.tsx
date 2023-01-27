@@ -45,7 +45,7 @@ export const Price = styled.div`
     font-size: 15px;
   }
 `
-export const Box = styled.div`
+export const BoxMiddle = styled.div`
   padding: 0px 6px;
   display: flex;
   height: 40px;
