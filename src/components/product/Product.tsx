@@ -1,3 +1,5 @@
+import cartSlice from '../../shared/features/api/cart/cartSlice'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   BoxMiddle,
   Buy,
@@ -15,6 +17,10 @@ import { useGetAllProductsQuery } from '../../shared/features/api/product/produc
 import { SkeletonLoading } from '../skeletonLoading/SkeletonLoading'
 
 export const Product = () => {
+  const { cartProductIds } = useSelector((state: any) => state.cart)
+  const { addToCart, removeFromCart } = cartSlice.actions
+  const dispatch = useDispatch()
+
   const { data, isLoading } = useGetAllProductsQuery({
     page: 1,
     rows: 1,
@@ -45,7 +51,8 @@ export const Product = () => {
                 </Price>
               </BoxMiddle>
               <Description>{item.description}</Description>
-              <Buy>
+
+              <Buy onClick={() => dispatch(addToCart(item.id))}>
                 <img src={IconBuy} alt="" />
                 <p>COMPRAR</p>
               </Buy>
