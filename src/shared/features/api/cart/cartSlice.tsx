@@ -1,17 +1,25 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
+interface arrayProduct {
+  itemId: number
+  itemPrice: number
+}
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {
-    cartProductIds: []
+    cartProductIds: [],
+    totalPrice: 0
   },
   reducers: {
-    addToCart: (state: any, action: any) => {
-      state.cartProductIds = [action.payload, ...state.cartProductIds]
+    addToCart: (state: any, action: PayloadAction<arrayProduct>) => {
+      state.cartProductIds = [action.payload.itemId, ...state.cartProductIds]
+      state.totalPrice += Number(action.payload.itemPrice)
     },
-    removeFromCart: (state: any, action: any) => {
-      const indexOfId = state.cartProductIds.indexOf(action.payload)
+    removeFromCart: (state: any, action: PayloadAction<arrayProduct>) => {
+      const indexOfId = state.cartProductIds.indexOf(action.payload.itemId)
       state.cartProductIds.splice(indexOfId, 1)
+      state.totalPrice -= Number(action.payload.itemPrice)
     },
     removeAllCart: (state: any) => {
       state.cartProductIds = []

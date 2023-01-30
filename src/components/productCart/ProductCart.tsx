@@ -1,4 +1,4 @@
-import React from 'react'
+import { useDispatch } from 'react-redux'
 import {
   Amount,
   AmountContainer,
@@ -6,35 +6,67 @@ import {
   Price,
   ProductCartContainer,
   Title,
-  ButtonAmount
+  ButtonAmount,
+  RemoveFromCart
 } from './ProductCart.styled'
-import Imagem from '../../assets/apple-watch.png'
-import { Box } from '@mui/system'
-import { Button, ButtonGroup } from '@mui/material'
+
+import { useGetAllProductsQuery } from '../../shared/features/api/product/productSlice'
+import { IProduct } from '../../shared/interfaces'
+import cartSlice from '../../shared/features/api/cart/cartSlice'
+import { useAppSelector } from '../../shared/features/app/hooks'
 
 export const ProductCart = () => {
+  const { data } = useGetAllProductsQuery({
+    page: 1,
+    rows: 1,
+    sortBy: 'id',
+    orderBy: 'DESC'
+  })
+  const { cartProductIds } = useAppSelector((state: any) => state.cart)
+  const { removeFromCart } = cartSlice.actions
+  const dispatch = useDispatch()
+  const cartProductData = data?.products.filter(product =>
+    cartProductIds.includes(product.id)
+  )
+
   return (
     <>
-      <ProductCartContainer>
-        <Image>
-          <img src={Imagem} alt="" />
-        </Image>
-        <Title>
-          <p>Apple Watch Series 4 GPS</p>
-        </Title>
+      {cartProductData?.map((item: IProduct) => {
+        return (
+          <ProductCartContainer key={item.id}>
+            <Image>
+              <img src={item.photo} alt="" />
+            </Image>
+            <Title>
+              <p>{item.name}</p>
+            </Title>
 
-        <AmountContainer>
-          <Amount>
-            <p>Qtd:</p>
-            <ButtonAmount>
-              <p>-</p> <span>|</span> <p>1</p> <span>|</span> <p>+</p>
-            </ButtonAmount>
-          </Amount>
-        </AmountContainer>
-        <Price>
-          <strong>R$399</strong>
-        </Price>
-      </ProductCartContainer>
+            <AmountContainer>
+              <Amount>
+                <p>Qtd:</p>
+                <ButtonAmount>
+                  <p>-</p> <span>|</span> <p>1</p> <span>|</span> <p>+</p>
+                </ButtonAmount>
+              </Amount>
+            </AmountContainer>
+            <Price>
+              <strong>{item.price}</strong>
+            </Price>
+            <RemoveFromCart
+              onClick={() =>
+                dispatch(
+                  removeFromCart({
+                    itemId: item.id,
+                    itemPrice: Number(item.price)
+                  })
+                )
+              }
+            >
+              <p>X</p>
+            </RemoveFromCart>
+          </ProductCartContainer>
+        )
+      })}
     </>
   )
 }

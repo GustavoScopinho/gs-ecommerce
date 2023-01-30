@@ -5,6 +5,7 @@ export const ProductCartContainer = styled.div`
   height: 95px;
   background-color: #fff;
   border-radius: 8px;
+  margin-bottom: 10px;
 
   display: flex;
   align-items: center;
@@ -12,6 +13,11 @@ export const ProductCartContainer = styled.div`
 `
 export const Image = styled.div`
   padding-right: 20px;
+
+  img {
+    width: 80px;
+    height: 80px;
+  }
 `
 export const Title = styled.p`
   width: 40%;
@@ -46,5 +52,19 @@ export const Amount = styled.div`
 export const Price = styled.div`
   font-weight: 700;
   font-size: 14px;
-  padding-left: 20px;
+  padding: 0px 8px;
+`
+export const RemoveFromCart = styled.button`
+  background-color: #000;
+  width: 24px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  margin: -90px -5px 0px 0px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `

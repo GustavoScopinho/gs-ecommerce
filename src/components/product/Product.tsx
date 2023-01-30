@@ -1,5 +1,5 @@
 import cartSlice from '../../shared/features/api/cart/cartSlice'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import {
   BoxMiddle,
   Buy,
@@ -7,18 +7,16 @@ import {
   ContainerProduct,
   ContainerTitle,
   Description,
-  Price,
-  Container
+  Price
 } from './Product.styled'
-import ImgHomepod from '../../assets/homepod.png'
+
 import IconBuy from '../../assets/shopping-bag.png'
 import { useGetAllProductsQuery } from '../../shared/features/api/product/productSlice'
 
 import { SkeletonLoading } from '../skeletonLoading/SkeletonLoading'
 
 export const Product = () => {
-  const { cartProductIds } = useSelector((state: any) => state.cart)
-  const { addToCart, removeFromCart } = cartSlice.actions
+  const { addToCart } = cartSlice.actions
   const dispatch = useDispatch()
 
   const { data, isLoading } = useGetAllProductsQuery({
@@ -29,7 +27,6 @@ export const Product = () => {
   })
 
   let Products = data?.products
-  console.log(data)
 
   return (
     <>
@@ -52,7 +49,16 @@ export const Product = () => {
               </BoxMiddle>
               <Description>{item.description}</Description>
 
-              <Buy onClick={() => dispatch(addToCart(item.id))}>
+              <Buy
+                onClick={() =>
+                  dispatch(
+                    addToCart({
+                      itemId: item.id,
+                      itemPrice: Number(item.price)
+                    })
+                  )
+                }
+              >
                 <img src={IconBuy} alt="" />
                 <p>COMPRAR</p>
               </Buy>

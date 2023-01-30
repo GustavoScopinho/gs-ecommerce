@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useSelector } from 'react-redux'
 import { Typography } from '@mui/material'
 import Box from '@mui/material/Box'
 import SwipeableDrawer from '@mui/material/SwipeableDrawer'
@@ -16,9 +17,14 @@ import {
 } from './Cart.styled'
 import { ProductCart } from '../productCart/ProductCart'
 
+import { useAppSelector } from '../../shared/features/app/hooks'
+
 type Anchor = 'right'
 
 export const Cart = () => {
+  const { cartProductIds, totalPrice } = useAppSelector(
+    (state: any) => state.cart
+  )
   const [state, setState] = React.useState({
     right: false
   })
@@ -60,7 +66,7 @@ export const Cart = () => {
           </Box>
           <Total>
             <Typography>Total</Typography>
-            <Typography>R$798</Typography>
+            <Typography>R${totalPrice}</Typography>
           </Total>
         </ContainerProducts>
         <Checkout>
@@ -76,7 +82,7 @@ export const Cart = () => {
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>
             <NavButton>
-              <img src={IconCart} /> <strong>0</strong>
+              <img src={IconCart} /> <strong>{cartProductIds.length}</strong>
             </NavButton>
           </Button>
 
