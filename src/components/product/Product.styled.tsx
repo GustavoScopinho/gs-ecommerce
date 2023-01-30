@@ -11,7 +11,7 @@ export const ContainerProduct = styled.div`
   :last-child {
   }
 `
-export const ContainerImagem = styled.div`
+export const ContainerImg = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

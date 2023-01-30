@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import {
   BoxMiddle,
   Buy,
-  ContainerImagem,
+  ContainerImg,
   ContainerProduct,
   ContainerTitle,
   Description,
@@ -36,9 +36,9 @@ export const Product = () => {
         Products?.map((item: any) => {
           return (
             <ContainerProduct key={item.id}>
-              <ContainerImagem>
+              <ContainerImg>
                 <img src={item.photo} alt="" />
-              </ContainerImagem>
+              </ContainerImg>
               <BoxMiddle>
                 <ContainerTitle>
                   <p>{item.name}</p>
@@ -54,7 +54,8 @@ export const Product = () => {
                   dispatch(
                     addToCart({
                       itemId: item.id,
-                      itemPrice: Number(item.price)
+                      itemPrice: Number(item.price),
+                      quantity: item.quantity
                     })
                   )
                 }

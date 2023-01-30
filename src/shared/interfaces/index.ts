@@ -1,5 +1,5 @@
 export interface IProduct {
-  id: number | any
+  id: number
   name: string
   brand: string
   description: string
@@ -7,6 +7,7 @@ export interface IProduct {
   price: string
   createdAt: string
   updatedAt: string
+  quantity: number
 }
 
 export interface IProducts {
@@ -19,4 +20,14 @@ export interface IPagination {
   rows: number
   sortBy: string
   orderBy: string
+}
+
+export interface arrayProduct {
+  itemId: number
+  itemPrice: number
+}
+
+export interface ICartProduct {
+  id: number
+  quantity: number
 }

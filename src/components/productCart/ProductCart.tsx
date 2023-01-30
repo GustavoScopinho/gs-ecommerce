@@ -7,11 +7,12 @@ import {
   ProductCartContainer,
   Title,
   ButtonAmount,
-  RemoveFromCart
+  RemoveFromCart,
+  ButtonQuantity
 } from './ProductCart.styled'
 
 import { useGetAllProductsQuery } from '../../shared/features/api/product/productSlice'
-import { IProduct } from '../../shared/interfaces'
+import { ICartProduct, IProduct } from '../../shared/interfaces'
 import cartSlice from '../../shared/features/api/cart/cartSlice'
 import { useAppSelector } from '../../shared/features/app/hooks'
 
@@ -22,11 +23,15 @@ export const ProductCart = () => {
     sortBy: 'id',
     orderBy: 'DESC'
   })
-  const { cartProductIds } = useAppSelector((state: any) => state.cart)
-  const { removeFromCart } = cartSlice.actions
+  const { cartProductIds } = useAppSelector(state => state.cart)
+  const { removeFromCart, addQuantity, removeQuantity } = cartSlice.actions
   const dispatch = useDispatch()
-  const cartProductData = data?.products.filter(product =>
-    cartProductIds.includes(product.id)
+
+  const cartProductData = data?.products.filter(
+    product =>
+      cartProductIds.find(
+        (productData: any) => productData.id === product.id
+      ) !== undefined
   )
 
   return (
@@ -45,7 +50,37 @@ export const ProductCart = () => {
               <Amount>
                 <p>Qtd:</p>
                 <ButtonAmount>
-                  <p>-</p> <span>|</span> <p>1</p> <span>|</span> <p>+</p>
+                  <ButtonQuantity
+                    onClick={() =>
+                      dispatch(
+                        removeQuantity({
+                          itemId: item.id,
+                          itemPrice: Number(item.price)
+                        })
+                      )
+                    }
+                  >
+                    -
+                  </ButtonQuantity>
+                  <span>|</span>
+                  <p>
+                    {cartProductIds.map((i: ICartProduct) =>
+                      Number(i.quantity)
+                    )}
+                  </p>
+                  <span>|</span>
+                  <ButtonQuantity
+                    onClick={() =>
+                      dispatch(
+                        addQuantity({
+                          itemId: item.id,
+                          itemPrice: Number(item.price)
+                        })
+                      )
+                    }
+                  >
+                    +
+                  </ButtonQuantity>
                 </ButtonAmount>
               </Amount>
             </AmountContainer>

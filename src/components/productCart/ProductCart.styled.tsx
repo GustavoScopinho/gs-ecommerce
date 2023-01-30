@@ -68,3 +68,9 @@ export const RemoveFromCart = styled.button`
   align-items: center;
   justify-content: center;
 `
+
+export const ButtonQuantity = styled.button`
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+`
