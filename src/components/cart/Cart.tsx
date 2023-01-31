@@ -22,9 +22,7 @@ import { useAppSelector } from '../../shared/features/app/hooks'
 type Anchor = 'right'
 
 export const Cart = () => {
-  const { cartProductIds, totalPrice } = useAppSelector(
-    (state: any) => state.cart
-  )
+  const { cartProductIds, totalPrice } = useAppSelector(state => state.cart)
   const [state, setState] = React.useState({
     right: false
   })
