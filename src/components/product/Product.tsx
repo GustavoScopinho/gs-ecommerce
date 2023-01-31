@@ -9,11 +9,10 @@ import {
   Description,
   Price
 } from './Product.styled'
-
 import IconBuy from '../../assets/shopping-bag.png'
 import { useGetAllProductsQuery } from '../../shared/features/api/product/productSlice'
-
 import { SkeletonLoading } from '../skeletonLoading/SkeletonLoading'
+import { IProduct } from '../../shared/interfaces'
 
 export const Product = () => {
   const { addToCart } = cartSlice.actions
@@ -33,7 +32,7 @@ export const Product = () => {
       {isLoading ? (
         <SkeletonLoading />
       ) : (
-        Products?.map((item: any) => {
+        Products?.map((item: IProduct) => {
           return (
             <ContainerProduct key={item.id}>
               <ContainerImg>

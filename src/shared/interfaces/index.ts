@@ -25,10 +25,17 @@ export interface IPagination {
 export interface arrayProduct {
   itemId: number
   itemPrice: number
+  quantity: number
 }
 
 export interface ICartProduct {
   id: number
   quantity: number
   amount: number
+}
+
+export interface CartState {
+  cartProductIds: ICartProduct[]
+  totalPrice: number
+  quantity: number
 }

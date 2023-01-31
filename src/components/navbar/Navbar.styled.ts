@@ -14,7 +14,6 @@ export const Container = styled.div`
     height: 48px;
   }
 `
-
 export const NavButton = styled.button`
   width: 90px;
   height: 45px;
@@ -34,7 +33,6 @@ export const NavButton = styled.button`
     font-size: 16px;
   }
 `
-
 export const Font = styled.h1`
   font-weight: 600;
   font-size: 40px;
@@ -44,7 +42,6 @@ export const Font = styled.h1`
     font-size: 32px;
   }
 `
-
 export const FontSmall = styled.h5`
   font-weight: 300;
   font-size: 20px;

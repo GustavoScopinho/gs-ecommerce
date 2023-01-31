@@ -15,6 +15,7 @@ import { useGetAllProductsQuery } from '../../shared/features/api/product/produc
 import { ICartProduct, IProduct } from '../../shared/interfaces'
 import cartSlice from '../../shared/features/api/cart/cartSlice'
 import { useAppSelector } from '../../shared/features/app/hooks'
+import { Typography } from '@mui/material'
 
 export const ProductCart = () => {
   const { data } = useGetAllProductsQuery({
@@ -29,9 +30,8 @@ export const ProductCart = () => {
 
   const cartProductData = data?.products.filter(
     product =>
-      cartProductIds.find(
-        (productData: any) => productData.id === product.id
-      ) !== undefined
+      cartProductIds.find(productData => productData.id === product.id) !==
+      undefined
   )
 
   return (
@@ -48,14 +48,15 @@ export const ProductCart = () => {
 
             <AmountContainer>
               <Amount>
-                <p>Qtd:</p>
+                <Typography>Qtd:</Typography>
                 <ButtonAmount>
                   <ButtonQuantity
                     onClick={() =>
                       dispatch(
                         removeQuantity({
                           itemId: item.id,
-                          itemPrice: Number(item.price)
+                          itemPrice: Number(item.price),
+                          quantity: Number(item.quantity)
                         })
                       )
                     }
@@ -63,18 +64,21 @@ export const ProductCart = () => {
                     -
                   </ButtonQuantity>
                   <span>|</span>
-                  <p>
-                    {cartProductIds.map((i: ICartProduct) =>
-                      Number(i.quantity)
-                    )}
-                  </p>
+                  <Typography>
+                    {cartProductIds.map((i: ICartProduct) => {
+                      if (i.id === item.id) {
+                        return i.quantity
+                      }
+                    })}
+                  </Typography>
                   <span>|</span>
                   <ButtonQuantity
                     onClick={() =>
                       dispatch(
                         addQuantity({
                           itemId: item.id,
-                          itemPrice: Number(item.price)
+                          itemPrice: Number(item.price),
+                          quantity: Number(item.quantity)
                         })
                       )
                     }
@@ -92,12 +96,13 @@ export const ProductCart = () => {
                 dispatch(
                   removeFromCart({
                     itemId: item.id,
-                    itemPrice: Number(item.price)
+                    itemPrice: Number(item.price),
+                    quantity: Number(item.quantity)
                   })
                 )
               }
             >
-              <p>X</p>
+              <Typography>X</Typography>
             </RemoveFromCart>
           </ProductCartContainer>
         )
