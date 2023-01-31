@@ -8,7 +8,8 @@ import {
   Title,
   ButtonAmount,
   RemoveFromCart,
-  ButtonQuantity
+  ButtonQuantity,
+  TextQuantity
 } from './ProductCart.styled'
 
 import { useGetAllProductsQuery } from '../../shared/features/api/product/productSlice'
@@ -48,7 +49,7 @@ export const ProductCart = () => {
 
             <AmountContainer>
               <Amount>
-                <Typography>Qtd:</Typography>
+                <TextQuantity>Qtd:</TextQuantity>
                 <ButtonAmount>
                   <ButtonQuantity
                     onClick={() =>

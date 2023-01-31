@@ -36,7 +36,7 @@ export const NavButton = styled.div`
 
 export const ContainerDrawer = styled.div`
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   background-color: #0f52ba;
   display: flex;
   flex-direction: column;
@@ -56,6 +56,7 @@ export const ContainerText = styled.div`
   color: #fff;
   font-weight: 700;
   width: 45%;
+  padding-top: 30px;
 `
 
 export const ButtonClose = styled.div`
@@ -73,25 +74,29 @@ export const ButtonClose = styled.div`
 export const ContainerProducts = styled.div`
   width: 90%;
   margin: 0 auto;
-  height: 90%;
   margin-top: 50px;
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
   flex-direction: column;
+  justify-content: space-between;
 `
 
 export const Total = styled.div`
   display: flex;
+  align-items: flex-end;
   justify-content: space-between;
+  margin: 0 auto;
   width: 80%;
+  padding-top: 20px;
 
   p {
     font-weight: 700;
     font-size: 28px;
     color: #fff;
-    margin-bottom: 25px;
+  }
+
+  @media (max-width: 700px) {
   }
 `
 
@@ -102,10 +107,16 @@ export const Checkout = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 30px;
 
   p {
     font-weight: 700;
     font-size: 28px;
     color: #fff;
   }
+
+  @media (max-width: 700px) {
+  }
 `
+
+export const ContainerLow = styled.div``

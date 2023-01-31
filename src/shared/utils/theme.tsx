@@ -7,5 +7,14 @@ export const theme = createTheme({
     secondary: {
       main: '#BFBFBF'
     }
+  },
+  breakpoints: {
+    values: {
+      xs: 420,
+      sm: 700,
+      md: 900,
+      lg: 1200,
+      xl: 1536
+    }
   }
 })

@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { useSelector } from 'react-redux'
-import { Typography } from '@mui/material'
+
+import { Typography, useMediaQuery, useTheme } from '@mui/material'
 import Box from '@mui/material/Box'
 import SwipeableDrawer from '@mui/material/SwipeableDrawer'
 import Button from '@mui/material/Button'
@@ -9,6 +9,7 @@ import {
   ButtonClose,
   Checkout,
   ContainerDrawer,
+  ContainerLow,
   ContainerProducts,
   ContainerText,
   NavButton,
@@ -42,10 +43,17 @@ export const Cart = () => {
       setState({ ...state, [anchor]: open })
     }
 
+  const theme = useTheme()
+
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'))
+
   const list = (anchor: Anchor) => (
     <Box
-      sx={{ width: '486px', height: '100%', backgroundColor: '#0f52ba' }}
-      role="presentation"
+      sx={{
+        width: smDown ? '350px' : '480px',
+        minHeight: '100%',
+        backgroundColor: '#0f52ba'
+      }}
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <ContainerDrawer>
@@ -62,14 +70,16 @@ export const Cart = () => {
           <Box>
             <ProductCart />
           </Box>
+        </ContainerProducts>
+        <ContainerLow>
           <Total>
             <Typography>Total</Typography>
             <Typography>R${totalPrice}</Typography>
           </Total>
-        </ContainerProducts>
-        <Checkout>
-          <Typography>Finalizar Compra</Typography>
-        </Checkout>
+          <Checkout>
+            <Typography>Finalizar Compra</Typography>
+          </Checkout>
+        </ContainerLow>
       </ContainerDrawer>
     </Box>
   )
