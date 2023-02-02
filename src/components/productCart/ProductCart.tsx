@@ -13,12 +13,12 @@ import {
 } from './ProductCart.styled'
 
 import { useGetAllProductsQuery } from '../../shared/features/api/product/productSlice'
-import { ICartProduct, IProduct } from '../../shared/interfaces'
+import { ExistProps, ICartProduct, IProduct } from '../../shared/interfaces'
 import cartSlice from '../../shared/features/api/cart/cartSlice'
 import { useAppSelector } from '../../shared/features/app/hooks'
 import { Typography } from '@mui/material'
 
-export const ProductCart = () => {
+export const ProductCart = (props: ExistProps) => {
   const { data } = useGetAllProductsQuery({
     page: 1,
     rows: 1,
@@ -52,6 +52,7 @@ export const ProductCart = () => {
                 <TextQuantity>Qtd:</TextQuantity>
                 <ButtonAmount>
                   <ButtonQuantity
+                    style={{ display: `${props.exist}` }}
                     onClick={() =>
                       dispatch(
                         removeQuantity({
@@ -74,6 +75,7 @@ export const ProductCart = () => {
                   </Typography>
                   <span>|</span>
                   <ButtonQuantity
+                    style={{ display: `${props.exist}` }}
                     onClick={() =>
                       dispatch(
                         addQuantity({
@@ -90,9 +92,10 @@ export const ProductCart = () => {
               </Amount>
             </AmountContainer>
             <Price>
-              <strong>{item.price}</strong>
+              <strong>R${item.price}</strong>
             </Price>
             <RemoveFromCart
+              style={{ display: `${props.exist}` }}
               onClick={() =>
                 dispatch(
                   removeFromCart({

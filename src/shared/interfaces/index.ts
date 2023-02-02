@@ -39,3 +39,7 @@ export interface CartState {
   totalPrice: number
   quantity: number
 }
+
+export interface ExistProps {
+  exist?: string
+}

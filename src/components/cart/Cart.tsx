@@ -18,11 +18,13 @@ import {
 } from './Cart.styled'
 import { ProductCart } from '../productCart/ProductCart'
 
+import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from '../../shared/features/app/hooks'
+import { ExistProps } from '../../shared/interfaces'
 
 type Anchor = 'right'
 
-export const Cart = () => {
+export const Cart = (props: ExistProps) => {
   const { cartProductIds, totalPrice } = useAppSelector(state => state.cart)
   const [state, setState] = React.useState({
     right: false
@@ -47,6 +49,8 @@ export const Cart = () => {
 
   const smDown = useMediaQuery(theme.breakpoints.down('sm'))
 
+  const navigate = useNavigate()
+
   const list = (anchor: Anchor) => (
     <Box
       sx={{
@@ -64,7 +68,12 @@ export const Cart = () => {
             </Typography>
           </ContainerText>
 
-          <ButtonClose onClick={toggleDrawer(anchor, false)}>X</ButtonClose>
+          <ButtonClose
+            data-testid="button"
+            onClick={toggleDrawer(anchor, false)}
+          >
+            X
+          </ButtonClose>
         </TallContainer>
         <ContainerProducts>
           <Box>
@@ -77,7 +86,13 @@ export const Cart = () => {
             <Typography>R${totalPrice}</Typography>
           </Total>
           <Checkout>
-            <Typography>Finalizar Compra</Typography>
+            <Button
+              onClick={() => {
+                navigate('/comprovante', { state: { totalPrice } })
+              }}
+            >
+              Finalizar Compra
+            </Button>
           </Checkout>
         </ContainerLow>
       </ContainerDrawer>

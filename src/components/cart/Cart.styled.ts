@@ -109,13 +109,10 @@ export const Checkout = styled.div`
   align-items: center;
   margin-top: 30px;
 
-  p {
+  button {
     font-weight: 700;
     font-size: 28px;
     color: #fff;
-  }
-
-  @media (max-width: 700px) {
   }
 `
 

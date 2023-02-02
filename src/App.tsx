@@ -1,9 +1,14 @@
-import { Home } from './pages/Home'
+import { Provider } from 'react-redux'
+
+import { Router } from './routes'
+import { store } from './shared/features/store'
 
 export const App = () => {
   return (
     <>
-      <Home />
+      <Provider store={store}>
+        <Router />
+      </Provider>
     </>
   )
 }

@@ -4,7 +4,7 @@ import { ContainerFooter } from './Footer.styled'
 export const Footer = () => {
   return (
     <ContainerFooter>
-      <Typography>MKS sistemas © Todos os direitos reservados</Typography>
+      <Typography>GS © Todos os direitos reservados</Typography>
     </ContainerFooter>
   )
 }
