@@ -32,7 +32,6 @@ Somente digitar no terminal: npm run dev
 
 <hr>
 
-
  ### Desenvolvedor: 
 
 [<img src="https://avatars.githubusercontent.com/u/102439841?v=4" width=115 > <br> <sub> Gustavo Scopinho </sub>](https://github.com/GustavoScopinho)  |   
